@@ -1,5 +1,5 @@
 import axios from "axios";
-import citiesData from "../assets";
+import citiesData from "../../constants";
 export const GET_WEATHER_BEGIN = "GET_WEATHER_BEGIN";
 export const GET_WEATHER_SUCCESS = "GET_BOOKS_SUCCESS";
 export const GET_WEATHER_FAILURE = "GET_WEATHER_FAILURE";
@@ -30,11 +30,11 @@ export function getTodaysWeather(){
           const params = 'time, airTemperature, precipitation,windspeed, Humidity, cloudCover,icecover ';
           let apiUrl = `https://api.stormglass.io/v2/weather/point?lat=${lat}&lng=${lng}&params=${params}`;
            
-           todaysWeather[city.name] = return axios({
+          return todaysWeather[city.name] =  axios({
                url : apiUrl,
                method: 'GET',
                header : {
-                   Authorization :  ${APIkey},
+                   Authorization :  `${APIkey}`,
                    Accept: "application/json"
                }
            }).then((response) => {

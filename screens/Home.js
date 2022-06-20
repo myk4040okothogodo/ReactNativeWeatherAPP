@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, SafeAreaView, FlatList, Animated } from "react-native";
-
+import { connect } from "react-redux";
 import { NFTCard, HomeHeader, FocusedStatusBar } from "../components";
 import { COLORS, NFTData } from "../constants";
 
@@ -95,7 +95,7 @@ const Home = ({getTodaysWeather, todaysWeather}) => {
 
 function mapStateToProps(state){
     return {
-        todaysWeather : state.weatherReducer.todaysWeather;
+        todaysWeather : state.weatherReducer.todaysWeather
     }
 }
 

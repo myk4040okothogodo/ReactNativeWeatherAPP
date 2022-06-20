@@ -3,29 +3,27 @@ import eth from "../assets/icons/eth.png";
 import heart from "../assets/icons/heart.png";
 import left from "../assets/icons/left.png";
 import search from "../assets/icons/search.png";
-
 import logo from "../assets/images/logo.png";
 import Kampala from "../assets/images/Kampala.webp";
 import Capetown from "../assets/images/Capetown.jpg";
-import Kigali from "../assets/images/Kigali.webp";
+import Kigali from "../assets/images/kigali.webp";
 import London from "../assets/images/London.webp";
 import Nairobi from "../assets/images/Nairobi.webp";
-import Newyork from "../assets/images/Newyork.webp";
+import Newyork from "../assets/images/Newyork.jpg";
 import Washington from "../assets/images/Washington.webp";
 import Shanghai from "../assets/images/Shanghai.webp";
-import Capetown from "../assets/images/Capetown.jpg";
 import Cassablanca from "../assets/images/Cassablanca.jpg";
 import Barcelona from "../assets/images/Barcelona.webp";
 import Dubai from "../assets/images/Dubai.jpg";
 import Paris from "../assets/images/Paris.jpeg";
 import Sydney from "../assets/images/Sydney.webp";
-import st.Petersburg from "../assets/images/st.Petersburg.jpg";
+import Petersburg from "../assets/images/Petersburg.jpg";
 import Rome from "../assets/images/Rome.jpg";
 import Seoul from "../assets/images/Seoul.jpg";
-import cairo from "../assets/images/Cairo.avif";
+//import cairo from "../assets/images/Cairo.avif";
 import Accra from "../assets/images/Accra.jpg";
 import Abuja from "../assets/images/Abuja.webp";
-
+import Delhi from "../assets/images/Delhi.webp";
 import person01 from "../assets/images/person01.png";
 import person02 from "../assets/images/person02.png";
 import person03 from "../assets/images/person03.png";
@@ -37,18 +35,17 @@ export default {
   heart,
   left,
   search,
-
   logo,
   Capetown,
   Accra,
   Abuja,
-  Cairo,
+  //Cairo,
   Cassablanca,
   Rome,
   London,
   Seoul,
   Delhi,
-  st.Petersburg,
+  Petersburg,
   Barcelona,
   Kigali,
   Kampala,

@@ -4,7 +4,8 @@ import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { useFonts } from "expo-font";
 import {createStore, applyMiddleware} from "redux";
 import {Provider} from "react-redux";
-import rootReducer from "./src/stores/rootReducer";
+import thunk from "redux-thunk";
+import rootReducer from "./stores/rootReducer";
 import Home from "./screens/Home";
 import Details from "./screens/Details";
 

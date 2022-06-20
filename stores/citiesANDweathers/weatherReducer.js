@@ -1,9 +1,9 @@
 import * as weatherActions from "./weatherActions";
 
 const initialState = {
-   todaysWeather: []
-   error null,
-   loading: false
+   todaysWeather: [],
+   error : null,
+   loading: false,
 }
 
 
