@@ -20,9 +20,9 @@ export const NFTTitle = ({ title, subTitle, titleSize, subTitleSize }) => {
           fontFamily: FONTS.regular,
           fontSize: subTitleSize,
           color: COLORS.primary,
-        }}
+        }}                 
       >
-        by {subTitle}
+        {subTitle}
       </Text>
     </View>
   );
@@ -92,21 +92,12 @@ export const EndDate = () => {
     >
       <Text
         style={{
-          fontFamily: FONTS.regular,
-          fontSize: SIZES.small,
-          color: COLORS.primary,
-        }}
-      >
-        Ending in
-      </Text>
-      <Text
-        style={{
           fontFamily: FONTS.semiBold,
           fontSize: SIZES.medium,
           color: COLORS.primary,
         }}
       >
-        12h 30m
+      00:00
       </Text>
     </View>
   );
@@ -123,8 +114,7 @@ export const SubInfo = () => {
         justifyContent: "space-between",
       }}
     >
-      <People />
-      <EndDate />
+      <EndDate  />
     </View>
   );
 };

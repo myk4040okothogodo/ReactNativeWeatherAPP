@@ -1,9 +1,10 @@
 import axios from "axios";
-import citiesData from "../../constants";
+import {citiesData} from "../../constants";
 export const GET_WEATHER_BEGIN = "GET_WEATHER_BEGIN";
 export const GET_WEATHER_SUCCESS = "GET_BOOKS_SUCCESS";
 export const GET_WEATHER_FAILURE = "GET_WEATHER_FAILURE";
 
+APIkey ="4cbc0d6e-cbf3-11ec-a8d3-0242ac130002-4cbc0ddc-cbf3-11ec-a8d3-0242ac130002"
 
 export const getWeatherBegin = () => ({
     type: GET_WEATHER_BEGIN
@@ -23,8 +24,9 @@ export const getWeatherFailure = (error) => ({
 export function getTodaysWeather(){
     return dispatch => {
       dispatch(getWeatherBegin())
-      const todaysWeather = new Object();  
-      citiesData.map((city)=> {
+      const todaysWeather = new Object();
+    
+      citiesData?.map((city)=> {
           const lat = city.latitude;
           const lng = city.longitude;
           const params = 'time, airTemperature, precipitation,windspeed, Humidity, cloudCover,icecover ';
@@ -72,4 +74,5 @@ export function getTodaysWeather(){
       dispatch(getWeatherSuccess(todaysWeather))
       
     }
+  console.log("todaysWeather: ", todaysWeather)
 }

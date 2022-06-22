@@ -60,7 +60,7 @@ const HomeHeader = ({ onSearch }) => {
                  marginTop: SIZES.base / 2,
               }} 
           >
-            Lets find masterpiece Art 
+            Todays Weather updates ... 
          </Text>
         </View>
         <View style={{ marginTop: SIZES.font}}>
@@ -81,7 +81,7 @@ const HomeHeader = ({ onSearch }) => {
                 style = {{ width: 20, height: 20, marginRight: SIZES.base }}
              />
              <TextInput
-                 placeholder="Search NFTs"
+                 placeholder="Search city"
                  style = {{ flex: 1 }}
                  onChangeText = {onSearch}
              />

@@ -12,7 +12,7 @@ const weatherReducer = (state = initialState, action) => {
         case weatherActions.GET_WEATHER_BEGIN:
             return {
                 ...state,
-                loading:True
+                loading: true
             }
         case weatherActions.GET_WEATHER_SUCCESS:
             return {
@@ -24,6 +24,8 @@ const weatherReducer = (state = initialState, action) => {
                ...state,
                 error: action.payload.error
            }
+      default:
+        return state
     }
 }
 

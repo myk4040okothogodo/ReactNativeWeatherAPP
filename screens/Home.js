@@ -1,33 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, SafeAreaView, FlatList, Animated } from "react-native";
 import { connect } from "react-redux";
+import {getTodaysWeather} from "../stores/citiesANDweathers/weatherActions";
 import { NFTCard, HomeHeader, FocusedStatusBar } from "../components";
-import { COLORS, NFTData } from "../constants";
+import { COLORS, citiesData } from "../constants";
 
 const Home = ({getTodaysWeather, todaysWeather}) => {
+
   const ITEM_SIZE = 460
-  const [nftData, setNftData] = useState(NFTData);
+  const [CitiesData, setCitiesData] = useState(citiesData)
   const scrollY = React.useRef(new Animated.Value(0)).current;
   
   useEffect(
     () => {
        getTodaysWeather();
-    }
-  )
+    },[])
 
   const handleSearch = (value) => {
     if (value.length === 0) {
-      setNftData(NFTData);
+      setCitiesData(citiesData)
     }
 
-    const filteredData = NFTData.filter((item) =>
+    const filteredData = citiesData.filter((item) => 
       item.name.toLowerCase().includes(value.toLowerCase())
     );
-
-    if (filteredData.length === 0) {
-      setNftData(NFTData);
-    } else {
-      setNftData(filteredData);
+    
+    if (filteredData.length === 0){
+       setCitiesData(citiesData);
+    }else {
+       setCitiesData(filteredData)
     }
   };
 
@@ -37,7 +38,7 @@ const Home = ({getTodaysWeather, todaysWeather}) => {
       <View style={{ flex: 1 }}>
         <View style={{ zIndex: 0 }}>
           <Animated.FlatList
-            data={nftData}
+            data = {CitiesData}
             onScroll = {Animated.event(
               [{ nativeEvent: {contentOffset : { y : scrollY }}}],
               {useNativeDriver: true }

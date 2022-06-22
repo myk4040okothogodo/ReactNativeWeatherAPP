@@ -42,7 +42,7 @@ const NFTCard = ({ data, opacity, scale }) => {
         <CircleButton imgUrl={assets.heart} right={10} top={10} />
       </View>
 
-      <SubInfo />
+      <SubInfo  />
     
       <View style={{ width: "100%", padding: SIZES.font }}>
         <NFTTitle
@@ -60,14 +60,18 @@ const NFTCard = ({ data, opacity, scale }) => {
             alignItems: "center",
           }}
         >  
-    {/*  
+    {/*   
           <EthPrice price={data.price} />
-    */}
-          <RectButton
-            minWidth={120}
-            fontSize={SIZES.font}
-            handlePress={() => navigation.navigate("Details", { data })}
-          /> 
+    
+         // <RectButton
+
+         //   right = {10}
+         //   bottom = {10}
+         //   minWidth={120}
+         //   fontSize={SIZES.font}
+         //   handlePress = {() => console.log("show city details")}
+            //handlePress={() => navigation.navigate("Details", { data })}
+         // />*/} 
         </View>
       </View> 
     </Animated.View>

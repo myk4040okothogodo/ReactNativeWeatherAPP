@@ -20,10 +20,11 @@ import Sydney from "../assets/images/Sydney.webp";
 import Petersburg from "../assets/images/Petersburg.jpg";
 import Rome from "../assets/images/Rome.jpg";
 import Seoul from "../assets/images/Seoul.jpg";
-//import cairo from "../assets/images/Cairo.avif";
+import Berlin from "../assets/images/Berlin.webp";
 import Accra from "../assets/images/Accra.jpg";
 import Abuja from "../assets/images/Abuja.webp";
 import Delhi from "../assets/images/Delhi.webp";
+import Tokyo from "../assets/images/Tokyo.webp";
 import person01 from "../assets/images/person01.png";
 import person02 from "../assets/images/person02.png";
 import person03 from "../assets/images/person03.png";
@@ -39,7 +40,7 @@ export default {
   Capetown,
   Accra,
   Abuja,
-  //Cairo,
+  Berlin,
   Cassablanca,
   Rome,
   London,
@@ -56,8 +57,7 @@ export default {
   Dubai,
   Shanghai,
   Newyork,
-
-
+  Tokyo,
   person01,
   person02,
   person03,
