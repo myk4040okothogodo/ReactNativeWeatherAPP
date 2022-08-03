@@ -1,10 +1,11 @@
 import axios from "axios";
 import {citiesData} from "../../constants";
 export const GET_WEATHER_BEGIN = "GET_WEATHER_BEGIN";
-export const GET_WEATHER_SUCCESS = "GET_BOOKS_SUCCESS";
+export const GET_WEATHER_SUCCESS = "GET_WEATHER_SUCCESS";
 export const GET_WEATHER_FAILURE = "GET_WEATHER_FAILURE";
 
 APIkey ="4cbc0d6e-cbf3-11ec-a8d3-0242ac130002-4cbc0ddc-cbf3-11ec-a8d3-0242ac130002"
+APIkey2 ="5a782f767c1d4721a5f92535220308"
 
 export const getWeatherBegin = () => ({
     type: GET_WEATHER_BEGIN
@@ -23,56 +24,67 @@ export const getWeatherFailure = (error) => ({
 
 export function getTodaysWeather(){
     return dispatch => {
-      dispatch(getWeatherBegin())
-      const todaysWeather = new Object();
     
+      const todaysWeather = new Object();
+      let hourNow = new Date().getHours()
       citiesData?.map((city)=> {
-          const lat = city.latitude;
-          const lng = city.longitude;
-          const params = 'time, airTemperature, precipitation,windspeed, Humidity, cloudCover,icecover ';
+          let lat = city.latitude;
+          let lng = city.longitude;
+          //console.log("longitude :",lng, "latitude :", lat)
+          const params = 'airTemperature,cloudCover,gust,precipitation';
+          //let apiUrl = `https://api.stormglass.io/v2/weather/point?lat=${lat}&lng=${lng}&params=${params}`;
           let apiUrl = `https://api.stormglass.io/v2/weather/point?lat=${lat}&lng=${lng}&params=${params}`;
+          let apiUrl2 = `https://api.weatherapi.com/v1/current.json?key=${APIkey2}&q=${city.name}`
            
-          return todaysWeather[city.name] =  axios({
-               url : apiUrl,
-               method: 'GET',
-               header : {
-                   Authorization :  `${APIkey}`,
+         //todaysWeather[city.name] =
+           return axios({
+               method: 'get',
+               url : apiUrl2,
+               headers : {
                    Accept: "application/json"
                }
            }).then((response) => {
-              console.log(`${city.name}`,response)
               if (response.status == 200) {
-                  //Message data
-                  let cityWeather = response.data.map((item) => {
-                      return {
-                          time : item.time,
-                          airTemperature: item.airTemperature,
-                          precipitation: item.precipitation,
-                          windSpeed : item.windSpeed,
-                          humidity  : item.humidity,
-                          cloudCover: item.cloudCover,
-                          iceCover  : item.iceCover,
-                      }
-                  })
-              }else {
-                  let cityWeather = () => {
-                      return {
-                          time : "00.00",
-                          airTemperature: "00.00",
-                          precipitation: "00.00",
-                          windSpeed : "00.00",
-                          humidity : "00.00",
-                          cloudCover: "00.00",
-                          iceCover: "00.00",
-                      }
-                  }
+                  //console.log(response.data["current"]["cloud"])
+                
+                    return todaysWeather[city.name] = {
+                         rain :  response.data["current"]["precip_mm"],
+                         cloud : response.data["current"]["cloud"],
+                         wind :  response.data["current"]["gust_kph"],
+                         sun  :  response.data["current"]["temp_c"],
+                         text :  response.data["current"]["condition"]["text"],
+                         icon :  response.data["current"]["condition"]["icon"],
+                       };
+                  //console.log("todaysWeather :", todaysWeather[city.name])
+                  dispatch(getWeatherSuccess(todaysWeather))
+              } else {
+                   return  todaysWeather[city.name] =  {
+                     rain : "0.00",
+                     cloud: "0.00",
+                     wind:  "0.00",
+                     sun:   "0.00",
+                     text:  " ",
+                     icon:  "//cdn.weatherapi.com/weather/64x64/day/122.png",
+                  };
               }
-           }).catch((error) => {
-               dispatch(getWeatherFailure(error))
+                 dispatch(getWeatherSuccess(todaysWeather))
+                 // console.log(todaysWeather[city.name]["cloud"])
+           }).catch((error)=>{
+              console.log("error :", error)
+              return todaysWeather[city.name] = {
+                  rain:  "0.00",
+                  cloud: "0.00",
+                  wind:  "0.00",
+                  sun :  "0.00",
+                  text:  " ",
+                  icon: "//cdn.weatherapi.com/weather/64x64/day/122.png"
+              }
            })
+        dispatch(getWeatherSuccess(todaysWeather))
+      //console.log("todaysWeather: ", todaysWeather)
       })
+      //dispatch(getWeatherSuccess(todaysWeather))
       dispatch(getWeatherSuccess(todaysWeather))
-      
-    }
-  console.log("todaysWeather: ", todaysWeather)
+       
+   }
 }

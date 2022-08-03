@@ -1,17 +1,18 @@
 import axios from "axios";
-import citiesData from "../assets";
+import {citiesData} from "../../constants";
 export const GET_WEATHER_BEGIN = "GET_WEATHER_BEGIN";
 export const GET_WEATHER_SUCCESS = "GET_BOOKS_SUCCESS";
 export const GET_WEATHER_FAILURE = "GET_WEATHER_FAILURE";
 
+APIkey ="4cbc0d6e-cbf3-11ec-a8d3-0242ac130002-4cbc0ddc-cbf3-11ec-a8d3-0242ac130002"
 
 export const getWeatherBegin = () => ({
     type: GET_WEATHER_BEGIN
 })
 
-export const getWeatherSuccess = (cityWeather) => ({
+export const getWeatherSuccess = (todaysWeather) => ({
     type: GET_WEATHER_SUCCESS,
-    payload: {cityWeather}
+    payload: {todaysWeather}
 
 })
 
@@ -20,46 +21,45 @@ export const getWeatherFailure = (error) => ({
     payload: {error}
 })
 
-export function getWeather(){
+export function getTodaysWeather(){
     return dispatch => {
       dispatch(getWeatherBegin())
-      const ResultingCityWeather = new Object();  
-      citiesData.map((city)=> {
+      const todaysWeather = new Object();
+    
+      citiesData?.map((city)=> {
           const lat = city.latitude;
           const lng = city.longitude;
           const params = 'time, airTemperature, precipitation,windspeed, Humidity, cloudCover,icecover ';
           let apiUrl = `https://api.stormglass.io/v2/weather/point?lat=${lat}&lng=${lng}&params=${params}`;
            
-           ResultingCityWeather[city.name] = axios({
+          return todaysWeather[city.name] =  axios({
                url : apiUrl,
                method: 'GET',
                header : {
-                   Authorization :  ${APIkey},
+                   Authorization :  `${APIkey}`,
                    Accept: "application/json"
                }
            }).then((response) => {
               console.log(`${city.name}`,response)
               if (response.status == 200) {
                   //Message data
-                  cityWeather = response.data.map((item) => {
+                  let cityWeather = response.data.map((item) => {
                       return {
                           time : item.time,
                           airTemperature: item.airTemperature,
                           precipitation: item.precipitation,
                           windSpeed : item.windSpeed,
-                          humidity  : item.humidity,
-                          cloudCover: item.cloudCover,
-                          iceCover  : item.iceCover,
                       }
                   })
-                dispatch(getWeatherSuccess(city))
-              }   
+                 dispatch(getWeatherSuccesss(cu))
+              } else {
+                 dispatch(getWeatherFailure(response.data))
            }).catch((error) => {
                dispatch(getWeatherFailure(error))
            })
-
       })
-        
+      dispatch(getWeatherSuccess(todaysWeather))
+      console.log("todaysWeather: ", todaysWeather)      
     }
-
+  console.log("todaysWeather: ", todaysWeather)
 }

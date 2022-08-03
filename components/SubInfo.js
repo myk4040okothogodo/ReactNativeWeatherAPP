@@ -3,7 +3,7 @@ import { View, Image, Text } from "react-native";
 
 import { SIZES, FONTS, COLORS, SHADOWS, assets } from "../constants";
 
-export const NFTTitle = ({ title, subTitle, titleSize, subTitleSize }) => {
+export const NFTTitle = ({ title,  titleSize }) => {
   return (
     <View>
       <Text
@@ -15,39 +15,10 @@ export const NFTTitle = ({ title, subTitle, titleSize, subTitleSize }) => {
       >
         {title}
       </Text>
-      <Text
-        style={{
-          fontFamily: FONTS.regular,
-          fontSize: subTitleSize,
-          color: COLORS.primary,
-        }}                 
-      >
-        {subTitle}
-      </Text>
     </View>
   );
 };
 
-export const EthPrice = ({ price }) => {
-  return (
-    <View style={{ flexDirection: "row", alignItems: "center" }}>
-      <Image
-        source={assets.eth}
-        resizeMode="contain"
-        style={{ width: 20, height: 20, marginRight: 2 }}
-      />
-      <Text
-        style={{
-          fontFamily: FONTS.medium,
-          fontSize: SIZES.font,
-          color: COLORS.primary,
-        }}
-      >
-        {price}
-      </Text>
-    </View>
-  );
-};
 
 const ImageCmp = ({ imgUrl, index }) => {
   return (
@@ -76,6 +47,7 @@ export const People = () => {
 };
 
 export const EndDate = () => {
+  let time = new Date().getHours() + ":" + new Date().getMinutes()+ ":" +new Date().getSeconds();
   return (
     <View
       style={{
@@ -97,7 +69,7 @@ export const EndDate = () => {
           color: COLORS.primary,
         }}
       >
-      00:00
+    {time}
       </Text>
     </View>
   );
@@ -109,7 +81,7 @@ export const SubInfo = () => {
       style={{
         width: "100%",
         paddingHorizontal: SIZES.font,
-        marginTop: -SIZES.extraLarge,
+        marginTop:  -40,  //-SIZES.extraLarge,
         flexDirection: "row",
         justifyContent: "space-between",
       }}

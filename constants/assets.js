@@ -25,12 +25,20 @@ import Accra from "../assets/images/Accra.jpg";
 import Abuja from "../assets/images/Abuja.webp";
 import Delhi from "../assets/images/Delhi.webp";
 import Tokyo from "../assets/images/Tokyo.webp";
-import person01 from "../assets/images/person01.png";
+import Gust  from "../assets/images/gust.webp";
+import Sunny from "../assets/images/sunny.jpg";
+import Rainy from "../assets/images/rainy.jpg";
+import Cloud from "../assets/images/cloud.webp";
+import person01 from "../assets/images/person01.jpeg";
 import person02 from "../assets/images/person02.png";
 import person03 from "../assets/images/person03.png";
 import person04 from "../assets/images/person04.png";
 
 export default {
+  Cloud,
+  Sunny,
+  Gust,
+  Rainy,
   badge,
   eth,
   heart,

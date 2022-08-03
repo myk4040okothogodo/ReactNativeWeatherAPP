@@ -126,7 +126,7 @@ const DetailsDesc = ({ data, cityWeather }) => {
          <View style={{fontSize: 24, fontWeight: "900", flexDirection:"row", justifyContent:"space-between", alignItems:"center"}}>
          <Text>Expected Showers Today           :    </Text>
          {(cityWeather !== undefined) ?
-         <Text>{cityWeather["rain"]}  mm  </Text>
+         <Text>{cityWeather["rain"]}  mm   </Text>
            :
          <Text> 0 mm</Text>
          }

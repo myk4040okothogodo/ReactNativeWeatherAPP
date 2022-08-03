@@ -1,20 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { View, SafeAreaView, FlatList, Animated } from "react-native";
 import { connect } from "react-redux";
+import { useFocusEffect} from "@react-navigation/native"
 import {getTodaysWeather} from "../stores/citiesANDweathers/weatherActions";
 import { NFTCard, HomeHeader, FocusedStatusBar } from "../components";
 import { COLORS, citiesData } from "../constants";
+
+
 
 const Home = ({getTodaysWeather, todaysWeather}) => {
 
   const ITEM_SIZE = 460
   const [CitiesData, setCitiesData] = useState(citiesData)
+  const [todayzWeather, setTodayzweather] = useState(todaysWeather)
   const scrollY = React.useRef(new Animated.Value(0)).current;
   
   useEffect(
     () => {
        getTodaysWeather();
     },[])
+   
+  {/*
+   useFocusEffect(
+      React.useCallback(() => {
+          getTodaysWeather()
+      },[])
+  ) */}
 
   const handleSearch = (value) => {
     if (value.length === 0) {
@@ -33,8 +44,7 @@ const Home = ({getTodaysWeather, todaysWeather}) => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-    
+    <SafeAreaView style={{ flex: 1 }}>    
       <View style={{ flex: 1 }}>
         <View style={{ zIndex: 0 }}>
           <Animated.FlatList
@@ -65,9 +75,10 @@ const Home = ({getTodaysWeather, todaysWeather}) => {
                 inputRange  : opacityInputRange,
                 outputRange : [1,1,1,0]
               });
-            
-              return <NFTCard data={item} scale={scale} opacity={opacity} /> 
-              
+              console.log("todaysweather220000******* :", todaysWeather); 
+              return <NFTCard data={item} thiscityWeather={todayzWeather[item.name]} scale={scale} opacity={opacity} /> 
+              //return <NFTCard data={item}  scale={scale} opacity={opacity} /> 
+
               }}
             
             showsVerticalScrollIndicator={false}

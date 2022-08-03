@@ -3,7 +3,7 @@ import { View, Text, Image } from "react-native";
 import { EthPrice } from "./SubInfo";
 import { COLORS, SIZES, FONTS } from "../constants";
 
-const DetailsBid = ({ bid }) => {
+const DetailsBid = ({ weather, cityweather }) => {
     return (
        <View
           style = {{
@@ -14,13 +14,14 @@ const DetailsBid = ({ bid }) => {
               marginVertical: SIZES.base,
               paddingHorizontal: SIZES.base,
           }}
-          key = {bid.id}
+          key = {weather.id}
       >
+      
           <Image 
-              source = {bid.image}
+              source = {weather.image}
               resizeMode = "contain"
               style = {{ width: 48, height: 48 }}
-          />
+          /> 
           <View 
              style = {{
                  flex: 1,
@@ -35,7 +36,7 @@ const DetailsBid = ({ bid }) => {
                   color:  COLORS.primary,
               }}
            >
-               Bid placed by {bid.name}
+               highs of  {weather.name}
            </Text>
            <Text 
                style = {{
@@ -45,10 +46,16 @@ const DetailsBid = ({ bid }) => {
                   marginTop: 3,
                }} 
            >
-           { bid.date }
+           { cityweather.map((specificweather) => {
+               if (weather.name == specificweather){
+                   <View>
+                      {specificweather}
+                   </View>
+               }
+           })}
            </Text>
          </View>
-      <EthPrice price = {bid.price} />
+      {/*<EthPrice price = {bid.price} />*/}
       </View>
     );
 };

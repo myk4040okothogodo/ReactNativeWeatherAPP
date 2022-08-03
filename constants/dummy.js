@@ -1,5 +1,26 @@
 import assets from "./assets";
 
+const weatherData = [
+  {
+    id : "sun-01",
+    name: "airTemperature",
+    image: assets.Sunny,
+  },
+  {
+    id : "wind-02",
+    name: "gust",
+    image: assets.Gust,
+  },
+  {
+    id: "cloud-03",
+    name:"cloudCover",
+    images: assets.Cloud,
+  }
+]
+
+
+
+
 const citiesData = [
   {
     id: "city-01",
