@@ -3,7 +3,7 @@ import { View, Text, SafeAreaView, Image,Animated, StatusBar, FlatList } from "r
 
 import { COLORS, SIZES, assets, SHADOWS, FONTS } from "../constants";
 import { CircleButton, RectButton, SubInfo, DetailsDesc, DetailsBid, FocusedStatusBar } from "../components";
-import {weatherData} from "../constants"; 
+//import {weatherData} from "../constants"; 
 import {Icon} from 'react-native-elements'
 
 
@@ -81,7 +81,7 @@ const Details = ({ route, navigation }) => {
     if (liked == false){
       setVisible(true)
     }
-    setLiked(!liked)
+    setLiked( !liked)
     setCounter(index2)
   }
 
@@ -121,7 +121,7 @@ const Details = ({ route, navigation }) => {
           justifyContent: "center",
           alignItems: "center",
           backgroundColor: "rgba(255,255,255,0.5)",
-          zIndex: 1,
+          zIndex: 2,
         }}
       >
       </View>
