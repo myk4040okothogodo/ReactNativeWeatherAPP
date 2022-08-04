@@ -1,10 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState} from "react";
 import { View, SafeAreaView, FlatList, Animated } from "react-native";
 import { connect } from "react-redux";
 import { useFocusEffect} from "@react-navigation/native"
 import {getTodaysWeather} from "../stores/citiesANDweathers/weatherActions";
 import { NFTCard, HomeHeader, FocusedStatusBar } from "../components";
 import { COLORS, citiesData } from "../constants";
+import * as Notifications from "expo-notifications";
+import * as Permissions from "expo-permissions";
+
+
+
+Notifications.setNotificationHandler({
+    handleNotification: async () => {
+        return {
+           shouldShowAlert: true,
+        }
+    },
+})
 
 
 
@@ -18,14 +30,41 @@ const Home = ({getTodaysWeather, todaysWeather}) => {
   useEffect(
     () => {
        getTodaysWeather();
-    },[])
+    },[todaysWeather])
    
-  {/*
-   useFocusEffect(
-      React.useCallback(() => {
-          getTodaysWeather()
-      },[])
-  ) */}
+  useEffect(() => {
+    // Permission for ios
+    Permissions.getAsync(Permissions.NOTIFICATIONS)
+      .then(statusObj => {
+      // check if we already have permission
+      if (statusObj.status !== "granted"){
+        // If permission is not there, ask for the same
+        return Permissions.askAsync(Permissions.NOTIFICATIONS)
+      }
+      return statusObj
+    })
+    .then(statusObj => {
+      //If permission is still not given throw an error
+      if (statusObj.status !== "granted") {
+        throw new Error("Permission not granted")
+      }
+    })
+    .catch(err => {
+      return null
+    });
+     
+    triggerlocal(todaysWeather);
+  },[])
+
+  const triggerlocal =(todaysWeather) => {
+     Notifications.scheduleNotificationAsync({
+        content: {
+           title: "ABUJA,NIGERIA",
+           body: todaysWeather["ABUJA"],
+        },
+        trigger: { seconds: 5 },
+     })
+  }
 
   const handleSearch = (value) => {
     if (value.length === 0) {
@@ -42,6 +81,7 @@ const Home = ({getTodaysWeather, todaysWeather}) => {
        setCitiesData(filteredData)
     }
   };
+
 
   return (
     <SafeAreaView style={{ flex: 1 }}>    

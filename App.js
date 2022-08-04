@@ -10,6 +10,7 @@ import Home from "./screens/Home";
 import Details from "./screens/Details";
 
 
+
 const store = createStore(
     rootReducer,
     applyMiddleware(thunk)
@@ -26,7 +27,8 @@ const theme = {
 
 const Stack = createStackNavigator();
 
-const App = () => {
+const App = ({todaysWeather}) => {
+  
   const [loaded] = useFonts({
     InterBold: require("./assets/fonts/Inter-Bold.ttf"),
     InterSemiBold: require("./assets/fonts/Inter-SemiBold.ttf"),
@@ -34,9 +36,10 @@ const App = () => {
     InterRegular: require("./assets/fonts/Inter-Regular.ttf"),
     InterLight: require("./assets/fonts/Inter-Light.ttf"),
   });
-
   if (!loaded) return null;
 
+  
+      
   return (
     <Provider store={store}>
     <NavigationContainer theme={theme}>
@@ -53,6 +56,5 @@ const App = () => {
     </Provider>
   );
 };
-
 
 export default App;

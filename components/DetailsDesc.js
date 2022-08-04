@@ -87,11 +87,11 @@ const DetailsDesc = ({ data, cityWeather }) => {
             shadowRadius: 10
         }}>
          <View style={{fontSize: 24, fontWeight: "900", flexDirection:"row", justifyContent:"space-around"}}>
-           <Text>Todays Weather Focust   :    </Text>
+           <Text>Todays Weather Focust :  </Text>
            {(cityWeather !== undefined) ?
            <Text>{cityWeather["text"]} </Text>
              :
-           <Text>"Didnt succesfully get weather data,retry!"</Text>
+           <Text>"Didnt get data,retry!"</Text>
             }
          </View>
         </View>
